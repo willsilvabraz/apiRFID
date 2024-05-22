@@ -1,0 +1,56 @@
+{
+  "cartoes": {
+    "-NyQ6d9STX5gz2aLPfTT": {
+      "uid": "hjhj"
+    }
+  },
+  "motoristas": {
+    "-NyQ6BjHEl2m2f4rUIlb": {
+      "cnh": "325412565789",
+      "cpf": "11122233345",
+      "id_veiculo": "KylD45S6F765G",
+      "nome": "nomeTeste",
+      "validade_cnh": "23/10/26"
+    }
+  },
+  "veiculos": {
+    "-NyQ6USLX9UhhL1WB7u_": {
+      "ano_fabricacao": "2025",
+      "capacidade_carga": "50t",
+      "marca": "Mercedez",
+      "modelo": "Grand F3600",
+      "placa": "RTX5600",
+      "tag_rfid": "ERT2DF4561F",
+      "tipo_veiculo": "Bitrem"
+    },
+    "-NyQMUXVawZkfHhot8Op": {
+      "ano_fabricacao": "2024",
+      "capacidade_carga": "gfghg",
+      "marca": "gfhfg",
+      "modelo": "fghhjfghj",
+      "placa": "tyyjy",
+      "tag_rfid": "tghggh",
+      "tipo_veiculo": "gfg"
+    }
+  },
+  "viagens": {
+    "-NyQ6HJdGqzYvlOPIDdK": {
+      "data_fim": "2024-05-22",
+      "data_inicio": "2024-05-20",
+      "destino": "SSA",
+      "distancia_total": "2222",
+      "motorista": "WILLIAM",
+      "origem": "FSA",
+      "status_viagem": "concluida"
+    },
+    "-NyQMc_Hqq9ZUmRIWcz_": {
+      "data_fim": "2024-05-23",
+      "data_inicio": "2024-05-08",
+      "destino": "SSA",
+      "distancia_total": "200",
+      "motorista": "DAVI",
+      "origem": "FSA",
+      "status_viagem": "concluida"
+    }
+  }
+}
