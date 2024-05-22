@@ -22,7 +22,7 @@ app.post('/cadUid', (req, res) => {
     const { uid,  } = req.body;
     if (uid) {
         cadastrarPalavra(uid, "pendente")
-            .then(() => res.status(200).send('Cartão cadastrado com sucesso!'))
+            .then(() => res.status(200).send('Cartão cadastrado com sucesso!!!'))
             .catch(error => res.status(500).send(`Erro ao cadastrar Cartão: ${error}`));
     } else {
         res.status(400).send('UID é obrigatório.');
