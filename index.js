@@ -3,35 +3,38 @@ const express = require('express');
 const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
 
-const serviceAccount = require('./hahaha.json');
+// Inicialize o app do Firebase Admin SDK
+const serviceAccount = require('./DaviBD3.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://teste-dfb53-default-rtdb.firebaseio.com"
+  databaseURL: "https://projetoflask-fb-default-rtdb.firebaseio.com"
 });
 
 const db = admin.database();
-const palavrasRef = db.ref("Cartoes");
+const palavrasRef = db.ref("cartoes");
 
 const app = express();
 app.use(bodyParser.json());
 
+// Rota para cadastrar UID
 app.post('/cadUid', (req, res) => {
-    const { uid } = req.body;
+    const { uid,  } = req.body;
     if (uid) {
-        cadCartao(uid)
-            .then(() => res.status(200).send('Cartao cadastrado com sucesso!'))
-            .catch(error => res.status(500).send(`Erro ao cadastrar UID: ${error}`));
+        cadastrarPalavra(uid, "pendente")
+            .then(() => res.status(200).send('Cartão cadastrado com sucesso!!!'))
+            .catch(error => res.status(500).send(`Erro ao cadastrar Cartão: ${error}`));
     } else {
-        res.status(400).send('Cartâo é obrigatório.');
+        res.status(400).send('UID é obrigatório.');
     }
 });
 
+function cadastrarPalavra(uid, status) {
+  return palavrasRef.push({ uid, status });
+}
+
+// Iniciar o servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-function cadCartao(uid) {
-  return palavrasRef.push({ uid});
-}
