@@ -45,7 +45,7 @@ app.post('/cadUid', (req, res) => {
 // Função para cadastrar o cartão com UID e status "cadastrado"
 function cadCartao(uid) {
   return new Promise((resolve, reject) => {
-      // Cria um novo objeto com UID e status "cadastrado"
+      // Cria um novo objeto com UID e status "cadastrado gfgfhgfhgfhgf"
       const novoCartao = {
           uid: uid,
           status: 'cadastrado'
