@@ -32,7 +32,7 @@ app.post('/cadUid', (req, res) => {
 
         // Verificar o status e enviar a resposta adequada
         if (status === 'liberado') {
-          res.status(200).send('liberado');
+          res.status(200).json({ status: 'liberado' });
         } else {
           res.status(200).send(`UID já cadastrado. Status: ${status}`);
         }
