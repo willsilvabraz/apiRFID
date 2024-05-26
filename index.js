@@ -3,20 +3,23 @@ const express = require('express');
 const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
 
-const serviceAccount = require('./hahaha.json');
+// Inicialize o app do Firebase Admin SDK
+const serviceAccount = require('./DaviBD3.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://teste-dfb53-default-rtdb.firebaseio.com"
+  databaseURL: "https://projetoflask-fb-default-rtdb.firebaseio.com"
 });
 
 const db = admin.database();
-const palavrasRef = db.ref("Cartoes");
+const palavrasRef = db.ref("cartoes");
 
 const app = express();
 app.use(bodyParser.json());
 
+// Rota para cadastrar UID
 app.post('/cadUid', (req, res) => {
+<<<<<<< HEAD
   const { uid } = req.body;
   if (uid) {
       // Verificar se o UID já existe
@@ -37,11 +40,24 @@ app.post('/cadUid', (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+=======
+    const { uid,  } = req.body;
+    if (uid) {
+        cadastrarPalavra(uid, "pendente")
+            .then(() => res.status(200).send('Cartão cadastrado com sucesso!!!'))
+            .catch(error => res.status(500).send(`Erro ao cadastrar Cartão: ${error}`));
+    } else {
+        res.status(400).send('UID é obrigatório.');
+    }
 });
 
-function cadCartao(uid) {
-  return palavrasRef.push({ uid});
+function cadastrarPalavra(uid, status) {
+  return palavrasRef.push({ uid, status });
 }
+
+// Iniciar o servidor
+>>>>>>> a9c7badcb4122b253f99ee9753232d4959576655
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
