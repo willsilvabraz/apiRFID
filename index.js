@@ -24,11 +24,18 @@ app.post('/cadUid', (req, res) => {
     // Verificar se o UID já existe
     palavrasRef.orderByChild("uid").equalTo(uid).once("value", snapshot => {
       if (snapshot.exists()) {
-        // UID já existe, retornar o status
+        // UID já existe, verificar o status
+        let status = '';
         snapshot.forEach(childSnapshot => {
-          const status = childSnapshot.val().status;
-          res.status(200).send(`UID já cadastrado. Status: ${status}`);
+          status = childSnapshot.val().status;
         });
+
+        // Verificar o status e enviar a resposta adequada
+        if (status === 'liberado') {
+          res.status(200).send('liberado');
+        } else {
+          res.status(200).send(`UID já cadastrado. Status: ${status}`);
+        }
       } else {
         // UID não existe, cadastrar
         cadCartao(uid)
@@ -40,6 +47,7 @@ app.post('/cadUid', (req, res) => {
     res.status(400).send('Cartão é obrigatório.');
   }
 });
+
 
 
 // Função para cadastrar o cartão com UID e status "cadastrado"
