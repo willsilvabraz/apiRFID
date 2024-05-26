@@ -32,19 +32,22 @@ app.post('/cadUid', (req, res) => {
 
         // Verificar o status e enviar a resposta adequada
         if (status === 'liberado') {
-          res.status(200).json({ status: 'liberado' });
-        } else {
-          res.status(200).send(`UID já cadastrado. Status: ${status}`);
+          res.status(200).json({ status: status });
+        } else if (status === 'cadastrado') {
+          res.status(200).json({ status: 'Aguarde liberação' });
+        }
+        else {
+          res.status(200).json({ status: status });
         }
       } else {
         // UID não existe, cadastrar
         cadCartao(uid)
-          .then(() => res.status(200).send('Cartão cadastrado com sucesso!'))
-          .catch(error => res.status(500).send(`Erro ao cadastrar UID: ${error}`));
+          .then(() => res.status(200).json({ status: 'cadastrado' }))
+          .catch(error => res.status(200).json({ status: `erro ${error}`}));
       }
     });
   } else {
-    res.status(400).send('Cartão é obrigatório.');
+    res.status(400).json({ status: `falta cartão`});
   }
 });
 
