@@ -4,11 +4,13 @@ const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
 
 // Inicialize o app do Firebase Admin SDK
-const serviceAccount = require('./hahaha.json');
+//const serviceAccount = require('./hahaha.json');
+const serviceAccount = require('./DaviBD3.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://teste-dfb53-default-rtdb.firebaseio.com"
+  //databaseURL: "https://teste-dfb53-default-rtdb.firebaseio.com"
+  databaseURL: "https://projetoflask-fb-default-rtdb.firebaseio.com"
 });
 
 const db = admin.database();
